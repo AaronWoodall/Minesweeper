@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScreenManager {
 
+    public static final int DEFAULT_ORTHO_WIDTH = 800;
+    public static final int DEFAULT_ORTHO_HEIGHT = 600;
+
     private Screen currentScreen = null;
 
     public void setCurrentScreen(Screen newScreen) {

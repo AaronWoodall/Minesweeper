@@ -7,7 +7,7 @@ import minesweeper.game.Minesweeper;
 import minesweeper.game.rendering.RenderObject;
 
 /**
- * Created by kyle on 11/3/16.
+ * This is a test class for testing rendering techniques.
  */
 public class Mine extends RenderObject {
 
@@ -25,7 +25,7 @@ public class Mine extends RenderObject {
         OrthographicCamera camera = Minesweeper.getInstance().getScreenManager().getCurrentScreen().getOrthographicCamera();
         float orthoMaxX = camera.viewportWidth;
 //        float orthoMaxY = camera.viewportHeight;
-        System.out.println(xPosition);
+//        System.out.println(xPosition);
         if (xPosition > orthoMaxX - getRectangle().getWidth()|| xPosition < 0) {
             velocityModifier *= -1;
         }

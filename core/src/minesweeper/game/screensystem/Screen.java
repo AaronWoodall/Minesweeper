@@ -4,12 +4,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import minesweeper.game.Minesweeper;
 import minesweeper.game.rendering.RenderObject;
 
 public abstract class Screen {
 
-    private OrthographicCamera orthographicCamera = new OrthographicCamera(800, 600);
+    private OrthographicCamera orthographicCamera = new OrthographicCamera(ScreenManager.DEFAULT_ORTHO_WIDTH, ScreenManager.DEFAULT_ORTHO_HEIGHT);
     protected Array<RenderObject> renderObjects = new Array<RenderObject>();
 
     public OrthographicCamera getOrthographicCamera() {
@@ -18,7 +17,7 @@ public abstract class Screen {
 
     public void draw(SpriteBatch spriteBatch) {
         spriteBatch.begin();
-        orthographicCamera.setToOrtho(false, 800, 600);
+        orthographicCamera.setToOrtho(false, ScreenManager.DEFAULT_ORTHO_WIDTH, ScreenManager.DEFAULT_ORTHO_HEIGHT);
         for (RenderObject renderObject : renderObjects) {
             Rectangle renderRectangle = renderObject.getRectangle();
             spriteBatch.draw(renderObject.getTexture(), renderRectangle.getX(), renderRectangle.getY());
