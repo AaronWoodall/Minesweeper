@@ -2,6 +2,7 @@ package minesweeper.game.screensystem;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import minesweeper.game.Minesweeper;
 import minesweeper.game.rendering.RenderObject;
@@ -18,15 +19,15 @@ public abstract class Screen {
     public void draw(SpriteBatch spriteBatch) {
         spriteBatch.begin();
         for (RenderObject renderObject : renderObjects) {
-//            Rectangle renderRectangle = renderObject.getRectangle();
-//            spriteBatch.draw(renderObject.getTexture(), renderRectangle.getX(), renderRectangle.getY());
+            Rectangle renderRectangle = renderObject.getRectangle();
+            spriteBatch.draw(renderObject.getTexture(), renderRectangle.getX(), renderRectangle.getY());
         }
         spriteBatch.end();
     }
 
     public void update(float deltaTime) {
         for (RenderObject renderObject : renderObjects) {
-//            renderObject.update(deltaTime);
+            renderObject.update(deltaTime);
         }
     }
 
