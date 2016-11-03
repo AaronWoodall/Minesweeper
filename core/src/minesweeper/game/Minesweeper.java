@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import minesweeper.game.mine.Mine;
 import minesweeper.game.screensystem.MainMenuScreen;
 import minesweeper.game.screensystem.ScreenManager;
 
@@ -12,6 +13,14 @@ public class Minesweeper extends ApplicationAdapter {
     private static int windowWidth, windowHeight;
     private ScreenManager screenManager = new ScreenManager();
     private SpriteBatch spriteBatch;
+    private static volatile Minesweeper instance = null;
+
+    public static synchronized Minesweeper getInstance() {
+        if (instance == null) {
+            instance = new Minesweeper();
+        }
+        return instance;
+    }
 
 	@Override
 	public void create () {
@@ -19,6 +28,7 @@ public class Minesweeper extends ApplicationAdapter {
         windowHeight = Gdx.graphics.getHeight();
         spriteBatch = new SpriteBatch();
         screenManager.setCurrentScreen(new MainMenuScreen());
+        instance = this;
 	}
 
 	@Override
@@ -40,5 +50,9 @@ public class Minesweeper extends ApplicationAdapter {
 
     public static int getWindowHeight() {
         return windowHeight;
+    }
+
+    public ScreenManager getScreenManager() {
+        return screenManager;
     }
 }

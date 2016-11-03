@@ -1,5 +1,9 @@
 package minesweeper.game.screensystem;
 
-public class MainMenuScreen extends Screen {
+import minesweeper.game.mine.Mine;
 
+public class MainMenuScreen extends Screen {
+    public MainMenuScreen() {
+        renderObjects.add(new Mine());
+    }
 }

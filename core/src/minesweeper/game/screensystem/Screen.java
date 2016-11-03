@@ -9,7 +9,7 @@ import minesweeper.game.rendering.RenderObject;
 
 public abstract class Screen {
 
-    private OrthographicCamera orthographicCamera = new OrthographicCamera(Minesweeper.getWindowWidth(), Minesweeper.getWindowHeight());
+    private OrthographicCamera orthographicCamera = new OrthographicCamera(800, 600);
     protected Array<RenderObject> renderObjects = new Array<RenderObject>();
 
     public OrthographicCamera getOrthographicCamera() {
@@ -18,6 +18,7 @@ public abstract class Screen {
 
     public void draw(SpriteBatch spriteBatch) {
         spriteBatch.begin();
+        orthographicCamera.setToOrtho(false, 800, 600);
         for (RenderObject renderObject : renderObjects) {
             Rectangle renderRectangle = renderObject.getRectangle();
             spriteBatch.draw(renderObject.getTexture(), renderRectangle.getX(), renderRectangle.getY());
