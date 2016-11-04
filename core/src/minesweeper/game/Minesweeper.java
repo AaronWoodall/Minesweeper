@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import minesweeper.game.mine.Mine;
 import minesweeper.game.screensystem.MainMenuScreen;
 import minesweeper.game.screensystem.ScreenManager;
 
@@ -33,7 +32,7 @@ public class Minesweeper extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0.74f, 0.74f, 0.74f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         screenManager.drawCurrentScreen(spriteBatch);
         screenManager.updateCurrentScreen(Gdx.graphics.getDeltaTime());
