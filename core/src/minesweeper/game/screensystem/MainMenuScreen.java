@@ -1,5 +1,7 @@
 package minesweeper.game.screensystem;
 
+import javax.swing.JOptionPane;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import minesweeper.game.Minesweeper;
 import minesweeper.game.buttons.Button;
+import minesweeper.game.buttons.SceneLaunchButton;
 import minesweeper.game.rendering.RenderObject;
 
 public class MainMenuScreen extends Screen {
@@ -26,8 +29,22 @@ public class MainMenuScreen extends Screen {
             Texture buttonTexture = new Texture(Gdx.files.internal(textureName));
             int xPosition = (ScreenManager.DEFAULT_ORTHO_WIDTH / 2) - (buttonTexture.getWidth() / 2);
             int yPosition = (BUTTON_MARGIN * 8) + (buttonTexture.getHeight() + BUTTON_MARGIN) * buttonIndex;
-            renderObjects.add(new Button(buttonTexture, xPosition, yPosition));
+            
+            String className = textureName.substring(0, textureName.indexOf(".png"));
+            
+            renderObjects.add(new SceneLaunchButton(buttonTexture, xPosition, yPosition, getScreen(className)));
         }
+    }
+    
+    private Class<Screen> getScreen(String screenName) {
+    	Class<Screen> screen = null;
+    	try {
+			screen = (Class<Screen>) Class.forName("minesweeper.game.screensystem." + screenName + "Screen");
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Could not find screen action for button [" + screenName + "]");
+			e.printStackTrace();
+		}
+    	return screen;
     }
 
     @Override
