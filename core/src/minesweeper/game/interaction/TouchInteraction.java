@@ -15,4 +15,8 @@ public class TouchInteraction {
                              .getOrthographicCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         return new Rectangle(location.x, location.y, 1, 1);
     }
+    
+    public static boolean isLeftMouseDown() {
+    	return Gdx.input.isTouched();
+    }
 }

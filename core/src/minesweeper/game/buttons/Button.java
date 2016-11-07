@@ -11,7 +11,7 @@ import minesweeper.game.rendering.RenderObject;
 /**
  * Created by kyle on 11/3/16.
  */
-public class Button extends RenderObject {
+public abstract class Button extends RenderObject {
 
     public boolean isMouseOver = false;
 
@@ -26,8 +26,13 @@ public class Button extends RenderObject {
         Rectangle touchLocation = TouchInteraction.getTouchRectangle();
         if (super.getRectangle().contains(touchLocation)) {
             isMouseOver = true;
+            if (TouchInteraction.isLeftMouseDown()) {
+            	onClick();
+            }
         } else {
             isMouseOver = false;
         }
     }
+    
+    public abstract void onClick();
 }
