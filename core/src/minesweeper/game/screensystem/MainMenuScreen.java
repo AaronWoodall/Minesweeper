@@ -14,7 +14,7 @@ import minesweeper.game.rendering.RenderObject;
 
 public class MainMenuScreen extends Screen {
     private static final String[] buttonNames = {
-            "Quit.png", "HowToPlay.png", "QuickStart.png", "PlayGame.png"
+            "Quit", "HowToPlay", "QuickStart", "PlayGame"
     };
 
     private static final int BUTTON_MARGIN = 10;
@@ -26,13 +26,14 @@ public class MainMenuScreen extends Screen {
     private void placeButtons() {
         for (int buttonIndex = 0; buttonIndex < buttonNames.length; buttonIndex++) {
             String textureName = buttonNames[buttonIndex];
-            Texture buttonTexture = new Texture(Gdx.files.internal(textureName));
-            int xPosition = (ScreenManager.DEFAULT_ORTHO_WIDTH / 2) - (buttonTexture.getWidth() / 2);
-            int yPosition = (BUTTON_MARGIN * 8) + (buttonTexture.getHeight() + BUTTON_MARGIN) * buttonIndex;
+            Texture upTexture = new Texture(Gdx.files.internal(textureName + ".png"));
+            Texture downTexture = new Texture(Gdx.files.internal(textureName + "Clicked.png"));
+            int xPosition = (ScreenManager.DEFAULT_ORTHO_WIDTH / 2) - (upTexture.getWidth() / 2);
+            int yPosition = (BUTTON_MARGIN * 8) + (upTexture.getHeight() + BUTTON_MARGIN) * buttonIndex;
             
-            String className = textureName.substring(0, textureName.indexOf(".png"));
+            String className = textureName;
             
-            renderObjects.add(new SceneLaunchButton(buttonTexture, xPosition, yPosition, getScreen(className)));
+            renderObjects.add(new SceneLaunchButton(upTexture, downTexture, xPosition, yPosition, getScreen(className)));
         }
     }
     
