@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import minesweeper.game.Minesweeper;
+
 import minesweeper.game.buttons.Button;
 import minesweeper.game.buttons.SceneLaunchButton;
 import minesweeper.game.rendering.RenderObject;
