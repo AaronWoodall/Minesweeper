@@ -1,8 +1,8 @@
 {
   "1.0": {
     "project_path": ":core",
-    "project_dir": "C:\\Users\\Jayson\\Documents\\Quarters 4-6\\5. SoftwarePrinciples\\Minesweeper\\core",
-    "connection_project_dir": "C:\\Users\\Jayson\\Documents\\Quarters 4-6\\5. SoftwarePrinciples\\Minesweeper",
+    "project_dir": "C:\\dev\\Principles\\MineSweeper\\Minesweeper\\core",
+    "connection_project_dir": "C:\\dev\\Principles\\MineSweeper\\Minesweeper",
     "connection_gradle_user_home": null,
     "connection_gradle_distribution": "GRADLE_DISTRIBUTION(WRAPPER)",
     "connection_java_home": null,
