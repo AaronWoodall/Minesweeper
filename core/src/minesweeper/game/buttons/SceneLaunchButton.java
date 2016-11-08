@@ -22,13 +22,13 @@ public class SceneLaunchButton extends Button {
 	
 	@Override
 	public void onClick() {
-//		try {
-//			Minesweeper.getInstance().getScreenManager().setCurrentScreen(action.newInstance());
+		try {
 			this.setTexture(downTexture);
-//		} catch (IllegalAccessException | InstantiationException e) {
-//			JOptionPane.showMessageDialog(null, "Could not launch new screen via ScreenLaunchButton");
-//			e.printStackTrace();
-//		}
+			Minesweeper.getInstance().getScreenManager().setCurrentScreen(action.newInstance());
+		} catch (IllegalAccessException | InstantiationException e) {
+			JOptionPane.showMessageDialog(null, "Could not launch new screen via ScreenLaunchButton");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
