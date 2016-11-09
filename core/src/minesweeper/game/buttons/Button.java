@@ -21,6 +21,8 @@ public abstract class Button extends RenderObject {
         super.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         super.setRectangle(new Rectangle(xPosition, yPosition, texture.getWidth(), texture.getHeight()));
     }
+    
+
 
     @Override
     public void update(float deltaTime) {

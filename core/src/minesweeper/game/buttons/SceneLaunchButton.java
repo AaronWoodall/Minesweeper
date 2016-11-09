@@ -3,6 +3,7 @@ package minesweeper.game.buttons;
 import javax.swing.JOptionPane;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 import minesweeper.game.Minesweeper;
@@ -32,8 +33,21 @@ public class SceneLaunchButton extends Button {
 	}
 
 	@Override
+	public void update(float deltaTime) {
+		super.update(deltaTime);
+	}
+
+	@Override
 	public void onRelease() {
 		this.setTexture(upTexture);
+	}
+	
+	public Color getRenderTint() {
+		Color tint = Color.WHITE;
+		if (isMouseOver) {
+			tint = Color.LIGHT_GRAY;
+		}
+		return tint;
 	}
 
 }

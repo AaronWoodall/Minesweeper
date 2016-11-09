@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 import minesweeper.game.buttons.Button;
 import minesweeper.game.buttons.SceneLaunchButton;
+import minesweeper.game.rendering.RenderImage;
 import minesweeper.game.rendering.RenderObject;
 
 public class MainMenuScreen extends Screen {
@@ -24,6 +25,7 @@ public class MainMenuScreen extends Screen {
     }
 
     private void placeButtons() {
+    	
         for (int buttonIndex = 0; buttonIndex < buttonNames.length; buttonIndex++) {
             String textureName = buttonNames[buttonIndex];
             Texture upTexture = new Texture(Gdx.files.internal(textureName + ".png"));
@@ -35,40 +37,10 @@ public class MainMenuScreen extends Screen {
             
             renderObjects.add(new SceneLaunchButton(upTexture, downTexture, xPosition, yPosition, getScreen(className)));
         }
-    }
-    
-    private Class<Screen> getScreen(String screenName) {
-    	Class<Screen> screen = null;
-    	try {
-			screen = (Class<Screen>) Class.forName("minesweeper.game.screensystem." + screenName + "Screen");
-		} catch (ClassNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Could not find screen action for button [" + screenName + "]");
-			e.printStackTrace();
-		}
-    	return screen;
-    }
-
-    @Override
-    public void draw(SpriteBatch spriteBatch) {
-        spriteBatch.begin();
-
-        super.getOrthographicCamera().setToOrtho(false, ScreenManager.DEFAULT_ORTHO_WIDTH, ScreenManager.DEFAULT_ORTHO_HEIGHT);
-        super.getOrthographicCamera().update();
-
-        for (RenderObject renderObject : renderObjects) {
-            Color renderTint = Color.WHITE;
-            if (renderObject instanceof Button) {
-                Button button = (Button)renderObject;
-                if (button.isMouseOver) {
-                    renderTint = Color.LIGHT_GRAY;
-                }
-            }
-            spriteBatch.setColor(renderTint);
-
-            Rectangle renderRectangle = renderObject.getRectangle();
-
-            spriteBatch.draw(renderObject.getTexture(), renderRectangle.getX(), renderRectangle.getY());
-        }
-        spriteBatch.end();
+        
+        int height = Gdx.graphics.getBackBufferHeight();
+        Texture logoTexture = new Texture(Gdx.files.internal("Title.png"));
+        RenderImage logoImage = new RenderImage(logoTexture, Gdx.graphics.getBackBufferWidth() / 2, height - (height / 3));
+        renderObjects.add(logoImage);
     }
 }
