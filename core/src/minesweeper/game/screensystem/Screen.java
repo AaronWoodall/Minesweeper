@@ -25,6 +25,7 @@ public abstract class Screen {
         spriteBatch.begin();
         orthographicCamera.setToOrtho(false, ScreenManager.DEFAULT_ORTHO_WIDTH, ScreenManager.DEFAULT_ORTHO_HEIGHT);
         orthographicCamera.update();
+        
         for (RenderObject renderObject : renderObjects) {
             Rectangle renderRectangle = renderObject.getRectangle();
             
@@ -37,6 +38,7 @@ public abstract class Screen {
             
             spriteBatch.setColor(Color.WHITE);
         }
+        
         spriteBatch.end();
     }
 

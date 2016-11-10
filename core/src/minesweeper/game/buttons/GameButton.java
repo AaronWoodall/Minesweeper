@@ -1,11 +1,15 @@
 package minesweeper.game.buttons;
 
+import java.util.function.Supplier;
+
+import javax.swing.JOptionPane;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import minesweeper.models.Square;
 
-public class GameButton extends Button {
+public class GameButton extends CallbackButton {
 	
 	private Square square;
 	
@@ -23,6 +27,13 @@ public class GameButton extends Button {
 
 	public GameButton(float xPosition, float yPosition) {
 		super(hiddenTexture, xPosition, yPosition);
+		Supplier<Void> callback = this::revealThis;
+		super.setCallbackAction(callback);
+	}
+	
+	public Void revealThis() {
+		JOptionPane.showMessageDialog(null, "Reveal click event.");
+		return null;
 	}
 
 	@Override

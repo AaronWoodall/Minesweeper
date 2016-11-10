@@ -11,8 +11,11 @@ import minesweeper.game.Minesweeper;
  */
 public class TouchInteraction {
     public static Rectangle getTouchRectangle() {
-        Vector3 location = Minesweeper.getInstance().getScreenManager().getCurrentScreen() // This is way too long. :|
-                             .getOrthographicCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        Vector3 location = Minesweeper.getInstance()
+        							.getScreenManager()
+        							.getCurrentScreen()
+        							.getOrthographicCamera()
+        							.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         return new Rectangle(location.x, location.y, 1, 1);
     }
     
