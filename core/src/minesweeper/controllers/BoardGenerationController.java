@@ -11,8 +11,7 @@ public class BoardGenerationController {
 	private Board board;
 	private int boardSize;
 	private double bombPercentage;
-	private long rows;
-	private long columns;
+
 	
 	/**
 	 * Performs all necessary functions for the class to operate
@@ -29,11 +28,13 @@ public class BoardGenerationController {
 	 * Initializes the board to the closest value to board size (ie. 130 will make it 11 x 12)
 	 */
 	private void createBoard(){
-		rows = Math.round(Math.sqrt(boardSize));
-		columns = Math.round(boardSize / rows);
+		long rows = Math.round(Math.sqrt(boardSize));
+		long columns = Math.round(boardSize / rows);
 		board = new Board((int) rows, (int) columns);
+		board.setRows(rows);
+		board.setColumns(columns);
 		initializeSquares();
-		placeBombs();
+		populateSquares();
 	}
 
 	/**
@@ -51,11 +52,13 @@ public class BoardGenerationController {
 	 * Evaluate how many bombs need to be placed
 	 * Places 'x' amount of bombs on the board
 	 */
-	private void placeBombs(){
+	private void populateSquares(){
 		Random random = new Random();
 		int bombCount = (int) (boardSize * bombPercentage);
+		board.setFlagCount(bombCount);
 		Square[][] tempSquares =  board.getSquares();
 		ArrayList<Square> squares = new ArrayList<Square>();
+		
 		for(int row = 0; row < tempSquares.length; row++){
 			for(int column = 0; column < tempSquares[row].length; column++){
 				squares.add(board.getSquare(row, column));
@@ -98,12 +101,12 @@ public class BoardGenerationController {
 	 * @param column - column of the 2d array
 	 */
 	private void incrementSquareValue(int originalRow, int originalColumn, int row, int column){
-		if(row > -1 && row < rows && column > -1 && column < columns){
+		if(row > -1 && row < board.getRows() && column > -1 && column < board.getColumns()){
 			Square originalSquare = board.getSquare(originalRow, originalColumn);
 			Square square = board.getSquare(row, column);
 			if(!square.getHasBomb()){
 				if(originalSquare.getHasBomb()){
-					int squareValue = square.getSquareValue();
+					char squareValue = square.getSquareValue();
 					squareValue += 1;
 					square.setSquareValue(squareValue);	
 				}				
@@ -111,18 +114,7 @@ public class BoardGenerationController {
 		}			
 	}
 	
-	/**
-	 * This is strictly to test the output of our numbers in
-	 * comparison to where the bombs are placed
-	 */
-	public void printingBoardTest(){
-		Square[][] tempSquares =  board.getSquares();
-		for(int i = 0; i < tempSquares.length; i++){
-			for(int j = 0; j < tempSquares[i].length; j++){
-				System.out.print(board.getSquare(i, j).getSquareValue() + "\t");
-			}
-			System.out.println();
-		}
+	public Board getBoard(){
+		return board;
 	}
-
 }

@@ -5,7 +5,7 @@ public class Square {
 	private boolean hasBomb = false;
 	private boolean isFlagged = false;
 	private boolean isRevealed = false;
-	private int squareValue = 0;
+	private char squareValue = '0';
 
 	public boolean getHasBomb() {
 		return hasBomb;
@@ -13,7 +13,7 @@ public class Square {
 	
 	public void setHasBomb(boolean hasBomb){
 		this.hasBomb = hasBomb;
-		setSquareValue(-1);
+		setSquareValue('B');
 	}
 
 	public boolean getIsFlagged() {
@@ -32,11 +32,11 @@ public class Square {
 		this.isRevealed = isRevealed;
 	}
 
-	public int getSquareValue() {
+	public char getSquareValue() {
 		return squareValue;
 	}
 
-	public void setSquareValue(int squareValue) {
+	public void setSquareValue(char squareValue) {
 		this.squareValue = squareValue;
 	}
 
