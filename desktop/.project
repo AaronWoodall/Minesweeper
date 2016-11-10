@@ -26,10 +26,19 @@
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/core/assets</locationURI>
 		</link>
+		<link>
+			<name>assets_</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/core/assets</locationURI>
+		</link>
 	</linkedResources>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1478561899157</id>
+=======
+			<id>1478617773521</id>
+>>>>>>> 75ea1537ef76ee4c5fd5f6b22ff50d12171571d0
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -38,7 +47,11 @@
 			</matcher>
 		</filter>
 		<filter>
+<<<<<<< HEAD
 			<id>1478561899202</id>
+=======
+			<id>1478617773542</id>
+>>>>>>> 75ea1537ef76ee4c5fd5f6b22ff50d12171571d0
 			<name></name>
 			<type>26</type>
 			<matcher>

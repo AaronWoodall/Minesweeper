@@ -156,6 +156,14 @@ public class GameLogic {
 	private void revealSquare(Square square){
 		square.setIsRevealed(true);
 	}
+	
+	private void revealSquare(int row, int column){
+		if(row > -1 && row < board.getRows() && column > -1 && column < board.getColumns()){
+			if(!board.getSquare(row, column).getHasBomb()){
+				board.getSquare(row, column).setIsRevealed(true);
+			}			
+		}		
+	}
 
 	/**
 	 * This recursively calls itself, grabbing new squares around the original square,
@@ -176,10 +184,19 @@ public class GameLogic {
 					checkAdjacentSquares(row - 1, column + 1);   // SW
 					checkAdjacentSquares(row, column + 1);       // S
 					checkAdjacentSquares(row + 1, column + 1);   // SE
-				}
-			}			
-			else{
-				revealSquare(board.getSquare(row, column));
+				}				
+			}		
+			else if(board.getSquare(row, column).getSquareValue() == '0'){
+				if(!board.getSquare(row, column).getIsFlagged()){
+					revealSquare(row - 1, column - 1);   // NW
+					revealSquare(row, column - 1);       // N
+					revealSquare(row + 1, column - 1);   // NE
+					revealSquare(row - 1, column);       // W
+					revealSquare(row + 1, column);       // E
+					revealSquare(row - 1, column + 1);   // SW
+					revealSquare(row, column + 1);       // S
+					revealSquare(row + 1, column + 1);   // SE
+				}				
 			}
 		}
 	}

@@ -22,7 +22,11 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1478561898955</id>
+=======
+			<id>1478617773645</id>
+>>>>>>> 75ea1537ef76ee4c5fd5f6b22ff50d12171571d0
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -31,7 +35,11 @@
 			</matcher>
 		</filter>
 		<filter>
+<<<<<<< HEAD
 			<id>1478561899029</id>
+=======
+			<id>1478617773667</id>
+>>>>>>> 75ea1537ef76ee4c5fd5f6b22ff50d12171571d0
 			<name></name>
 			<type>26</type>
 			<matcher>
