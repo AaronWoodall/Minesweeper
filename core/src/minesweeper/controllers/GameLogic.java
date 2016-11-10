@@ -159,7 +159,7 @@ public class GameLogic {
 	
 	private void revealSquare(int row, int column){
 		if(row > -1 && row < board.getRows() && column > -1 && column < board.getColumns()){
-			if(!board.getSquare(row, column).getHasBomb()){
+			if(!board.getSquare(row, column).getHasBomb() && !board.getSquare(row, column).getIsFlagged()){
 				board.getSquare(row, column).setIsRevealed(true);
 			}			
 		}		
