@@ -42,6 +42,7 @@ public class GamePlayScreen extends Screen {
 	@Override
 	public void draw(SpriteBatch spriteBatch) {
 		super.draw(spriteBatch);
+		waitForVBlank = false;
 		spriteBatch.begin();
 		font.draw(spriteBatch, String.valueOf(counter), 5, 30);
 		spriteBatch.end();
@@ -71,17 +72,31 @@ public class GamePlayScreen extends Screen {
 			}
 		}
 	}
-	
+	private boolean waitForVBlank = true; 
 	public void gameOver(boolean won) {
-		String message = (won ? "You won!" : "You lost!");
-		String subMessage = "Would you like to return to the Main Menu?";
-		int reply = JOptionPane.showConfirmDialog(null, message + "\n" + subMessage, message, JOptionPane.YES_NO_OPTION);
-		
-        if (reply == JOptionPane.YES_OPTION) {
-        	Minesweeper.getInstance().getScreenManager().setCurrentScreen(new MainMenuScreen());
-        } else {
-        	JOptionPane.showMessageDialog(null, "Thanks for playing!");
-        	System.exit(0);
-        }
+		revealAll();
+		if (!waitForVBlank) {
+			waitForVBlank = false;
+			String message = (won ? "You won!" : "You revealed a bomb, you lost!");
+			String subMessage = "Would you like to return to the Main Menu?";
+			int reply = JOptionPane.showConfirmDialog(null, message + "\n" + subMessage, message, JOptionPane.YES_NO_OPTION);
+			
+	        if (reply == JOptionPane.YES_OPTION) {
+	        	Minesweeper.getInstance().getScreenManager().setCurrentScreen(new MainMenuScreen());
+	        } else {
+	        	JOptionPane.showMessageDialog(null, "Thanks for playing!");
+	        	System.exit(0);
+	        }
+		}
+	}
+	
+	private void revealAll() {
+		Square[][] squares = boardGenerationController.getBoard().getSquares();
+		for (int row = 0; row < boardSize; row++) {
+			for (int col = 0; col < boardSize; col++) {
+				squares[row][col].setIsRevealed(true);
+				refresh();
+			}
+		}
 	}
 }

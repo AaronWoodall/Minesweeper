@@ -20,6 +20,6 @@ public class TouchInteraction {
     }
     
     public static boolean isLeftMouseDown() {
-    	return Gdx.input.isTouched();
+    	return Gdx.input.justTouched();
     }
 }
