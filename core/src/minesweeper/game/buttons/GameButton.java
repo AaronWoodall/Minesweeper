@@ -64,9 +64,9 @@ public class GameButton extends CallbackButton {
 		Screen screenReference = Minesweeper.getInstance().getScreenManager().getCurrentScreen();
 		Board board = ((GamePlayScreen)screenReference).getBoardGenerationController().getBoard();
 		thisSquare = board.getSquare(boardRow, boardCol);
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !thisSquare.getIsFlagged()) {
 			thisSquare.setIsRevealed(true);			
-		} else if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+		} else if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && !thisSquare.getIsRevealed()){
 			boolean originalFlagValue = thisSquare.getIsFlagged();
 			thisSquare.setIsFlagged(!thisSquare.getIsFlagged());
 			
