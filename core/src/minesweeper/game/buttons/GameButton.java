@@ -60,10 +60,10 @@ public class GameButton extends CallbackButton {
 		Board board = ((GamePlayScreen)screenReference).getBoardGenerationController().getBoard();
 		thisSquare = board.getSquare(boardRow, boardCol);
 		correctTexture();
-		((GamePlayScreen)screenReference).refresh();
 		((GamePlayScreen)screenReference).getBoardGenerationController()
 										 .getLogicController()
 								 		 .checkAdjacentSquares(boardRow, boardCol);
+		((GamePlayScreen)screenReference).refresh();
 	}
 	
 	public void correctTexture() {
