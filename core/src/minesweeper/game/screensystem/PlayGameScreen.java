@@ -7,26 +7,26 @@ import minesweeper.game.buttons.SceneLaunchButton;
 import minesweeper.game.buttons.SetterButton;
 
 public class PlayGameScreen extends Screen {
-	private static final int[] BOARD_SIZES = { 24, 16, 8 };
-	private static final int[] MINE_PERCENTAGES = { 25, 17, 10 };
+	private static final double[] BOARD_SIZES = { 24, 16, 8 };
+	private static final double[] MINE_PERCENTAGES = { 0.25, 0.17, 0.10 };
 	
-	private static int difficulty, minePercentage;
+	private static double difficulty, minePercentage;
 	
-	public static void setMinePercentage(int minePercentage) {
+	public static void setMinePercentage(double minePercentage) {
 		PlayGameScreen.minePercentage = minePercentage;
 		System.out.println("Mine Percentage set to " + getMinePercentage());
 	}
 
-	public static void setDifficulty(int difficulty) {
-		PlayGameScreen.difficulty = difficulty;
+	public static void setDifficulty(double value) {
+		PlayGameScreen.difficulty = value;
 		System.out.println("Difficulty set to " + getDifficulty());
 	}
 
-	public static int getMinePercentage() {
+	public static double getMinePercentage() {
 		return minePercentage;
 	}
 
-	public static int getDifficulty() {
+	public static double getDifficulty() {
 		return difficulty;
 	}
 
@@ -77,6 +77,4 @@ public class PlayGameScreen extends Screen {
 		SceneLaunchButton backButton = new SceneLaunchButton(backUpText, backDownText, xPosLeft, 50, getScreen("MainMenu"));
 		renderObjects.add(backButton);
 	}
-	
-	
 }

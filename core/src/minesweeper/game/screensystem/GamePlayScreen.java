@@ -7,24 +7,31 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
+import minesweeper.controllers.BoardGenerationController;
 import minesweeper.game.buttons.GameButton;
+import minesweeper.game.rendering.RenderObject;
+import minesweeper.models.Square;
 
 public class GamePlayScreen extends Screen {
-	private int difficulty, boardSize;
+	private double difficulty, boardSize;
 	private int counter = 0;
 	private BitmapFont font = new BitmapFont(Gdx.files.internal("arial.fnt"), false);
+	private BoardGenerationController boardGenerationController;
 	
+	public BoardGenerationController getBoardGenerationController() {
+		return boardGenerationController;
+	}
+
 	public GamePlayScreen() {
 		difficulty = PlayGameScreen.getDifficulty();
 		boardSize = PlayGameScreen.getMinePercentage();
 		
-		placeGameButtons();
+		boardGenerationController = new BoardGenerationController((int)(boardSize * boardSize), difficulty);
 		
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
 				counter += 1;
-				System.out.println(counter);
 			}
 		}, 1, 1);
 	}
@@ -37,15 +44,27 @@ public class GamePlayScreen extends Screen {
 		spriteBatch.end();
 	}
 
-	private void placeGameButtons() {
+	public void placeGameButtons() {
 		Texture referenceTexture = new Texture(Gdx.files.internal("Unrevealed.png"));
 		int textureWidth = referenceTexture.getWidth();
 		int textureHeight = referenceTexture.getHeight();
 		for (int row = 0; row < boardSize; row++) {
 			for (int column = 0; column < boardSize; column++) {
-				int xPos = textureWidth * column + ((textureWidth * boardSize - Gdx.graphics.getBackBufferWidth()) * -1);
-				GameButton button = new GameButton(xPos, textureHeight * row);
+				int xPos = (int) (textureWidth * column + ((textureWidth * boardSize - Gdx.graphics.getBackBufferWidth()) * -1));
+				GameButton button = new GameButton(xPos, textureHeight * row, row, column);
 				renderObjects.add(button);
+				button.updateSquare();
+			}
+		}
+	}
+	
+	public void refresh() {
+		for (RenderObject ro : renderObjects) {
+			if (ro instanceof GameButton) {
+				Square square = ((GameButton)ro).getThisSquare();
+				if (square.getIsRevealed()) {
+					((GameButton)ro).correctTexture();
+				}
 			}
 		}
 	}

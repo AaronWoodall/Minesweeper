@@ -9,6 +9,11 @@ import minesweeper.models.Square;
 public class BoardGenerationController {
 	
 	private Board board;
+	private GameLogic logicController;
+	public GameLogic getLogicController() {
+		return logicController;
+	}
+
 	private int boardSize;
 	private double bombPercentage;
 
@@ -22,6 +27,7 @@ public class BoardGenerationController {
 		this.boardSize = boardSize;
 		this.bombPercentage = bombPercnetage;		
 		createBoard();
+		logicController = new GameLogic(board);
 	}
 	
 	/**
