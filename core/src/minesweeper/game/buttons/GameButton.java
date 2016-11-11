@@ -68,6 +68,7 @@ public class GameButton extends CallbackButton implements InputProcessor {
 			thisSquare.setIsRevealed(true);			
 		} else if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
 			thisSquare.setIsFlagged(!thisSquare.getIsFlagged());
+			board.setFlagCount(board.getFlagCount() - 1);
 		}
 		correctTexture();
 		GameLogic logic = ((GamePlayScreen)screenReference).getBoardGenerationController()

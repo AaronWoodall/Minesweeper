@@ -61,6 +61,7 @@ public class GameLogic {
 			if(!bombWithoutFlag){
 				gameOver = true;
 				win = true;
+				System.out.println("No bomb without flag.");
 			}
 		}	
 		
