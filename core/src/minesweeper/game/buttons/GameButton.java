@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import minesweeper.controllers.BoardGenerationController;
+import minesweeper.controllers.GameLogic;
 import minesweeper.game.Minesweeper;
 import minesweeper.game.screensystem.GamePlayScreen;
 import minesweeper.game.screensystem.Screen;
@@ -59,11 +60,13 @@ public class GameButton extends CallbackButton {
 		Screen screenReference = Minesweeper.getInstance().getScreenManager().getCurrentScreen();
 		Board board = ((GamePlayScreen)screenReference).getBoardGenerationController().getBoard();
 		thisSquare = board.getSquare(boardRow, boardCol);
+		thisSquare.setIsRevealed(true);
 		correctTexture();
-		((GamePlayScreen)screenReference).getBoardGenerationController()
-										 .getLogicController()
-								 		 .checkAdjacentSquares(boardRow, boardCol);
+		GameLogic logic = ((GamePlayScreen)screenReference).getBoardGenerationController()
+										 .getLogicController();
+		logic.checkAdjacentSquares(boardRow, boardCol);
 		((GamePlayScreen)screenReference).refresh();
+		logic.gameOver();
 	}
 	
 	public void correctTexture() {

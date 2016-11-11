@@ -2,6 +2,8 @@ package minesweeper.controllers;
 
 import java.util.ArrayList;
 
+import minesweeper.game.Minesweeper;
+import minesweeper.game.screensystem.*;
 import minesweeper.models.Board;
 import minesweeper.models.Square;
 import minesweeper.views.ViewBoard;
@@ -40,13 +42,13 @@ public class GameLogic {
 	 * all flags have been correctly placed
 	 * @return - returns whether the game is over or not
 	 */
-	private boolean gameOver(){
+	public boolean gameOver(){
 		boolean gameOver = false;
+		boolean win = false;
 		ArrayList<Square> squares = fillSquareArrayList();
 		for(int i = 0; i < squares.size() && !gameOver; i++){
 			if(squares.get(i).getHasBomb() && squares.get(i).getIsRevealed()){
 				gameOver = true;
-				ui.respondToUser("OH NO! YOU HIT A BOMB! GAME OVER!");
 			}
 		}
 		if(board.getFlagCount() == 0 && !gameOver){
@@ -58,9 +60,16 @@ public class GameLogic {
 			}
 			if(!bombWithoutFlag){
 				gameOver = true;
-				ui.respondToUser("CONGRATULATIONS!!!!!!!!!! YOU WIN!!!!!!!!!!");
+				win = true;
 			}
 		}	
+		
+		if (gameOver) {
+			((GamePlayScreen)Minesweeper.getInstance()
+										.getScreenManager()
+										.getCurrentScreen())
+										.gameOver(win);
+		}
 		return gameOver;
 	}
 

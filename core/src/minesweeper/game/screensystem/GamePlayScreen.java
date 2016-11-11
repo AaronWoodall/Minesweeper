@@ -1,5 +1,7 @@
 package minesweeper.game.screensystem;
 
+import javax.swing.JOptionPane;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 import minesweeper.controllers.BoardGenerationController;
+import minesweeper.game.Minesweeper;
 import minesweeper.game.buttons.GameButton;
 import minesweeper.game.rendering.RenderObject;
 import minesweeper.models.Square;
@@ -67,5 +70,18 @@ public class GamePlayScreen extends Screen {
 				}
 			}
 		}
+	}
+	
+	public void gameOver(boolean won) {
+		String message = (won ? "You won!" : "You lost!");
+		String subMessage = "Would you like to return to the Main Menu?";
+		int reply = JOptionPane.showConfirmDialog(null, message + "\n" + subMessage, message, JOptionPane.YES_NO_OPTION);
+		
+        if (reply == JOptionPane.YES_OPTION) {
+        	Minesweeper.getInstance().getScreenManager().setCurrentScreen(new MainMenuScreen());
+        } else {
+        	JOptionPane.showMessageDialog(null, "Thanks for playing!");
+        	System.exit(0);
+        }
 	}
 }
