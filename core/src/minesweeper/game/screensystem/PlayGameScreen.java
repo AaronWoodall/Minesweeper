@@ -2,6 +2,8 @@ package minesweeper.game.screensystem;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import minesweeper.game.buttons.SceneLaunchButton;
 import minesweeper.game.buttons.SetterButton;
@@ -11,6 +13,8 @@ public class PlayGameScreen extends Screen {
 	private static final double[] MINE_PERCENTAGES = { 0.25, 0.17, 0.10 };
 	
 	private static double difficulty, minePercentage;
+	
+	private BitmapFont font = new BitmapFont(Gdx.files.internal("arial.fnt"), false);
 	
 	public static void setMinePercentage(double minePercentage) {
 		PlayGameScreen.minePercentage = minePercentage;
@@ -76,5 +80,13 @@ public class PlayGameScreen extends Screen {
 		
 		SceneLaunchButton backButton = new SceneLaunchButton(backUpText, backDownText, xPosLeft, 50, getScreen("MainMenu"));
 		renderObjects.add(backButton);
+	}
+	
+	public void draw(SpriteBatch spriteBatch) {
+		super.draw(spriteBatch);
+		spriteBatch.begin();
+		font.draw(spriteBatch, "Difficulty", 160, 450);
+		font.draw(spriteBatch, "Size", 550, 450);
+		spriteBatch.end();
 	}
 }
