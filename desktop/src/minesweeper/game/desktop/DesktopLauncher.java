@@ -22,6 +22,7 @@ public class DesktopLauncher {
 
 		config.width = WINDOW_WIDTH;
 		config.height = WINDOW_HEIGHT;
+		config.resizable = false;
 
 		new LwjglApplication(new Minesweeper(), config);
 	}
