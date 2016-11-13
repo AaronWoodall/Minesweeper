@@ -44,8 +44,8 @@ public class GamePlayScreen extends Screen {
 		super.draw(spriteBatch);
 		waitForVBlank = false;
 		spriteBatch.begin();
-		font.draw(spriteBatch, "Flag Counter: " + boardGenerationController.getBoard().getFlagCount(), 5, 60);
-		font.draw(spriteBatch, "Time: " + String.valueOf(counter), 5, 30);
+		font.draw(spriteBatch, "Flag Counter: " + boardGenerationController.getBoard().getFlagCount(), 535, 575);
+		font.draw(spriteBatch, "Time: " + String.valueOf(counter), 25, 575);
 		spriteBatch.end();
 	}
 
