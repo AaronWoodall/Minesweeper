@@ -55,8 +55,9 @@ public class PlayGameScreen extends Screen {
 			int yPos = 200 + (75 * diff);
 			
 			Texture upTexture = new Texture(Gdx.files.internal(difficultyTextureNames[diff] + ".png"));
+			Texture downTexture = new Texture(Gdx.files.internal(difficultyTextureNames[diff] + "Clicked.png"));
 			
-			SetterButton button = new SetterButton(upTexture, xPosLeft, yPos, MINE_PERCENTAGES[diff], SetterButton.SetType.DIFFICULTY, difficultyTextureNames[diff]);
+			SetterButton button = new SetterButton(upTexture, downTexture, xPosLeft, yPos, MINE_PERCENTAGES[diff], SetterButton.SetType.DIFFICULTY, difficultyTextureNames[diff]);
 			renderObjects.add(button);
 		}
 		
@@ -65,8 +66,9 @@ public class PlayGameScreen extends Screen {
 			int yPos = 200 + (75 * size);
 			
 			Texture upTexture = new Texture(Gdx.files.internal(sizeTextureNames[size] + ".png"));
+			Texture downTexture = new Texture(Gdx.files.internal(sizeTextureNames[size] + "Clicked.png"));
 			
-			SetterButton button = new SetterButton(upTexture, xPosRight, yPos, BOARD_SIZES[size], SetterButton.SetType.SIZE, sizeTextureNames[size]);
+			SetterButton button = new SetterButton(upTexture, downTexture, xPosRight, yPos, BOARD_SIZES[size], SetterButton.SetType.SIZE, sizeTextureNames[size]);
 			renderObjects.add(button);
 		}
 		
@@ -94,13 +96,8 @@ public class PlayGameScreen extends Screen {
 		spriteBatch.end();
 	}
 
-	public static void clickDifficulty(String buttonName) {
-		// CHANGE WHAT DIFFICULTY BUTTON IS VISUALLY CLICKED
+	public static void unclickButtons() {
 		
-	}
-
-	public static void clickSize(String buttonName) {
-		// CHANGE WHAT SIZE BUTTON IS VISUALLY CLICKED
 		
 	}
 }
