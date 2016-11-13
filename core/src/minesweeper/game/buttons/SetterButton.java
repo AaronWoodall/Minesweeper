@@ -19,14 +19,13 @@ public class SetterButton extends Button {
 		super(texture, xPosition, yPosition);
 		this.type = type;
 		this.value = boardSizes;
-		this.buttonName = buttonName;
+		this.setButtonName(buttonName);
 		upTexture = texture;
 		downTexture = clickedTexture;
 	}
 
 	@Override
 	public void onClick() {
-		this.setTexture(downTexture);
 		switch (type) {
 			case DIFFICULTY:
 				PlayGameScreen.setDifficulty(value);
@@ -35,10 +34,24 @@ public class SetterButton extends Button {
 				PlayGameScreen.setMinePercentage(value);
 				break;
 		}
+		PlayGameScreen.unclickButtons(type);
+		this.setTexture(downTexture);
 	}
 
 	@Override
 	public void onRelease() {
 		
+	}
+
+	public String getButtonName() {
+		return buttonName;
+	}
+
+	public void setButtonName(String buttonName) {
+		this.buttonName = buttonName;
+	}
+	
+	public SetType getType() {
+		return type;
 	}
 }

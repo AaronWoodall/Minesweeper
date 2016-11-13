@@ -1,5 +1,7 @@
 package minesweeper.game.screensystem;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import minesweeper.game.buttons.SceneLaunchButton;
 import minesweeper.game.buttons.SetterButton;
+import minesweeper.game.buttons.SetterButton.SetType;
 
 public class PlayGameScreen extends Screen {
 	private static final double[] BOARD_SIZES = { 24, 16, 8 };
@@ -15,6 +18,8 @@ public class PlayGameScreen extends Screen {
 	private static double difficulty, minePercentage;
 	
 	private BitmapFont font = new BitmapFont(Gdx.files.internal("arial.fnt"), false);
+	
+	private static ArrayList<SetterButton> setterButtons = new ArrayList<SetterButton>();
 	
 	public static void setMinePercentage(double minePercentage) {
 		PlayGameScreen.minePercentage = minePercentage;
@@ -59,6 +64,8 @@ public class PlayGameScreen extends Screen {
 			
 			SetterButton button = new SetterButton(upTexture, downTexture, xPosLeft, yPos, MINE_PERCENTAGES[diff], SetterButton.SetType.DIFFICULTY, difficultyTextureNames[diff]);
 			renderObjects.add(button);
+			
+			setterButtons.add(button);
 		}
 		
 		xPosRight = (float) ((float)width - (width / 2.4));
@@ -70,6 +77,8 @@ public class PlayGameScreen extends Screen {
 			
 			SetterButton button = new SetterButton(upTexture, downTexture, xPosRight, yPos, BOARD_SIZES[size], SetterButton.SetType.SIZE, sizeTextureNames[size]);
 			renderObjects.add(button);
+			
+			setterButtons.add(button);
 		}
 		
 		Texture backUpText = new Texture(Gdx.files.internal("Back.png"));
@@ -86,6 +95,9 @@ public class PlayGameScreen extends Screen {
 		// SET DIFFICULTY / SIZE DEFAULTS FOR PLAY GAME
 		setDifficulty(MINE_PERCENTAGES[2]);
 		setMinePercentage(BOARD_SIZES[2]);
+		
+		setterButtons.get(2).setTexture(new Texture(Gdx.files.internal("EasyClicked.png")));
+		setterButtons.get(5).setTexture(new Texture(Gdx.files.internal("SmallClicked.png")));
 	}
 	
 	public void draw(SpriteBatch spriteBatch) {
@@ -96,8 +108,12 @@ public class PlayGameScreen extends Screen {
 		spriteBatch.end();
 	}
 
-	public static void unclickButtons() {
-		
-		
+	public static void unclickButtons(SetType type) {
+		for(int i = 0; i < setterButtons.size(); i++) {
+			if(setterButtons.get(i).getType() == type) {
+				String buttonName = setterButtons.get(i).getButtonName();
+				setterButtons.get(i).setTexture(new Texture(Gdx.files.internal(buttonName + ".png")));
+			}
+		}
 	}
 }
