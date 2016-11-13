@@ -8,8 +8,8 @@ import minesweeper.game.Minesweeper;
 import minesweeper.game.buttons.SceneLaunchButton;
 
 public class QuickStartScreen extends Screen {
-	private static final double quickDifficulty = 0.17;
-	private static final double quickSize = 16;
+	private static final double quickDifficulty = 0.1;
+	private static final double quickSize = 8;
 	
 	public QuickStartScreen() {
 		

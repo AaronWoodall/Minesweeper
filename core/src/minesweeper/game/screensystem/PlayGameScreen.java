@@ -56,7 +56,7 @@ public class PlayGameScreen extends Screen {
 			
 			Texture upTexture = new Texture(Gdx.files.internal(difficultyTextureNames[diff] + ".png"));
 			
-			SetterButton button = new SetterButton(upTexture, xPosLeft, yPos, MINE_PERCENTAGES[diff], SetterButton.SetType.DIFFICULTY);
+			SetterButton button = new SetterButton(upTexture, xPosLeft, yPos, MINE_PERCENTAGES[diff], SetterButton.SetType.DIFFICULTY, difficultyTextureNames[diff]);
 			renderObjects.add(button);
 		}
 		
@@ -66,7 +66,7 @@ public class PlayGameScreen extends Screen {
 			
 			Texture upTexture = new Texture(Gdx.files.internal(sizeTextureNames[size] + ".png"));
 			
-			SetterButton button = new SetterButton(upTexture, xPosRight, yPos, BOARD_SIZES[size], SetterButton.SetType.SIZE);
+			SetterButton button = new SetterButton(upTexture, xPosRight, yPos, BOARD_SIZES[size], SetterButton.SetType.SIZE, sizeTextureNames[size]);
 			renderObjects.add(button);
 		}
 		
@@ -80,6 +80,10 @@ public class PlayGameScreen extends Screen {
 		
 		SceneLaunchButton backButton = new SceneLaunchButton(backUpText, backDownText, xPosLeft, 50, getScreen("MainMenu"));
 		renderObjects.add(backButton);
+		
+		// SET DIFFICULTY / SIZE DEFAULTS FOR PLAY GAME
+		setDifficulty(MINE_PERCENTAGES[2]);
+		setMinePercentage(BOARD_SIZES[2]);
 	}
 	
 	public void draw(SpriteBatch spriteBatch) {
@@ -88,5 +92,15 @@ public class PlayGameScreen extends Screen {
 		font.draw(spriteBatch, "Difficulty", 160, 450);
 		font.draw(spriteBatch, "Size", 550, 450);
 		spriteBatch.end();
+	}
+
+	public static void clickDifficulty(String buttonName) {
+		// CHANGE WHAT DIFFICULTY BUTTON IS VISUALLY CLICKED
+		
+	}
+
+	public static void clickSize(String buttonName) {
+		// CHANGE WHAT SIZE BUTTON IS VISUALLY CLICKED
+		
 	}
 }
