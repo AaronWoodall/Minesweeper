@@ -80,7 +80,9 @@ public class GameButton extends CallbackButton {
 		correctTexture();
 		GameLogic logic = ((GamePlayScreen)screenReference).getBoardGenerationController()
 										 .getLogicController();
-		logic.checkAdjacentSquares(boardRow, boardCol);
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !thisSquare.getIsFlagged()) {
+			logic.checkAdjacentSquares(boardRow, boardCol);
+		}
 		((GamePlayScreen)screenReference).refresh();
 		logic.gameOver();
 	}
