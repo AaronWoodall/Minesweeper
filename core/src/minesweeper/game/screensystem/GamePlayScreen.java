@@ -55,8 +55,10 @@ public class GamePlayScreen extends Screen {
 		int textureHeight = referenceTexture.getHeight();
 		for (int row = 0; row < boardSize; row++) {
 			for (int column = 0; column < boardSize; column++) {
-				int xPos = (int) (textureWidth * column + ((textureWidth * boardSize - Gdx.graphics.getBackBufferWidth()) * -1));
-				GameButton button = new GameButton(xPos, textureHeight * row, row, column);
+//				int xPos = (int) (textureWidth * column + ((textureWidth * boardSize - Gdx.graphics.getBackBufferWidth()) * -1));
+				int xPos = (int) ((textureWidth * column) + (Gdx.graphics.getBackBufferWidth() / 2) - ((referenceTexture.getWidth() / 2) * (boardSize)));
+				int yPos = (int) ((textureHeight * row) + (Gdx.graphics.getBackBufferHeight() / 2) - ((referenceTexture.getHeight() / 2) * (boardSize))) - textureHeight;
+				GameButton button = new GameButton(xPos, yPos, row, column);
 				renderObjects.add(button);
 				button.updateSquare();
 			}
