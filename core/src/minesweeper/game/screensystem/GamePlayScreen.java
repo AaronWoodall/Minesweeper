@@ -42,7 +42,6 @@ public class GamePlayScreen extends Screen {
 	@Override
 	public void draw(SpriteBatch spriteBatch) {
 		super.draw(spriteBatch);
-		waitForVBlank = false;
 		spriteBatch.begin();
 		font.draw(spriteBatch, "Flag Counter: " + boardGenerationController.getBoard().getFlagCount(), 535, 575);
 		font.draw(spriteBatch, "Time: " + String.valueOf(counter), 25, 575);
@@ -55,7 +54,6 @@ public class GamePlayScreen extends Screen {
 		int textureHeight = referenceTexture.getHeight();
 		for (int row = 0; row < boardSize; row++) {
 			for (int column = 0; column < boardSize; column++) {
-//				int xPos = (int) (textureWidth * column + ((textureWidth * boardSize - Gdx.graphics.getBackBufferWidth()) * -1));
 				int xPos = (int) ((textureWidth * column) + (Gdx.graphics.getBackBufferWidth() / 2) - ((referenceTexture.getWidth() / 2) * (boardSize)));
 				int yPos = (int) ((textureHeight * row) + (Gdx.graphics.getBackBufferHeight() / 2) - ((referenceTexture.getHeight() / 2) * (boardSize))) - textureHeight;
 				GameButton button = new GameButton(xPos, yPos, row, column);
@@ -75,11 +73,12 @@ public class GamePlayScreen extends Screen {
 			}
 		}
 	}
-	private boolean waitForVBlank = true; 
+	
+	private boolean delayWinPopup = true; 
 	public void gameOver(boolean won) {
 		revealAll();
-		if (!waitForVBlank) {
-			waitForVBlank = false;
+		if (!delayWinPopup) {
+			delayWinPopup = true;
 			String message = (won ? "You won!" : "You revealed a bomb, you lost!");
 			String subMessage = "Would you like to return to the Main Menu?";
 			int reply = JOptionPane.showConfirmDialog(null, message + "\n" + subMessage, message, JOptionPane.YES_NO_OPTION);
@@ -90,7 +89,15 @@ public class GamePlayScreen extends Screen {
 	        	JOptionPane.showMessageDialog(null, "Thanks for playing!");
 	        	System.exit(0);
 	        }
+		} else {
+			Timer.schedule(new Task() {
+				@Override
+				public void run() {
+					gameOver(won);
+				}
+			}, 0.1f);
 		}
+		delayWinPopup = false;
 	}
 	
 	private void revealAll() {
